@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class Palindrome {
     /**
@@ -47,8 +46,33 @@ public class Palindrome {
         Node p1 = head;
         Node p2 = secondHalfHead;
         boolean ok = true;
-        while (p2 != null) {
-
+        while (p2 != null) { // compare only the length of the second half
+            if (p1.key != p2.key) {
+                ok = false;
+                break;
+            }
+            p1 = p1.next;
+            p2 = p2.next;
         }
+
+        // Restore
+        reverseList(secondHalfHead);
+
+        return ok;
     }
+
+    public static Node reverseList(Node head) {
+        Node prev = null;
+        Node curr = head;
+
+        while (curr != null) {
+            Node nextTemp = curr.next; // save next
+            curr.next = prev;          // reverse pointer
+            prev = curr;               // move prev
+            curr = nextTemp;           // move curr
+        }
+
+        return prev;
+    }
+
 }
