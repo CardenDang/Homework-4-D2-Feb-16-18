@@ -70,7 +70,6 @@ public static Node listDelete(Node head, Node x) {
     }
     return head;
 }
-
 /** Print list */
 public static void printList(Node head) {
     Node curr = head;
@@ -79,5 +78,37 @@ public static void printList(Node head) {
         curr = curr.next;
     }
     System.out.println("null");
+}
+
+public static Node populateHeadInsert(Node head, int... values) {
+    for (int v : values) {
+        head = listInsert(head, new Node(v));
+    }
+    return head;
+}
+
+public static void main(String[] args) {
+    System.out.println("Assignment 1: Basic Linked List Operations");
+
+    Node head = null; // empty list
+
+    // Insert at least three nodes (head insert)
+    head = populateHeadInsert(head, 50, 60, 70); // list: 70, 60, 50->null
+
+    System.out.print("List after inserts: ");
+    printList(head);
+
+    // Search
+    int searchKey = 60;
+    Node found = listSearch(head, searchKey);
+    System.out.println("Search for " + searchKey + ": " + (found != null ? "FOUND" : "NOT FOUND"));
+
+    // Delete one node by reference
+    head = listDelete(head, found);
+
+    System.out.println("List after deleting " + searchKey + ": ");
+    printList(head);
+
+    System.out.println();
 }
 }
