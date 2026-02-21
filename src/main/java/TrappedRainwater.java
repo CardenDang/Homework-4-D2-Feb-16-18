@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class TrappedRainwater {
     /**
      * Assignment 3: TrappedRainwater
@@ -23,7 +25,7 @@ public class TrappedRainwater {
                 } else {
                     water += (leftMax - height[left]);
                 }
-                left++; // move left every time it process
+                left++; // move left every time it processes left
                 } else {
                     // right side is limiting
                     if (height[right] >= rightMax) {
@@ -31,11 +33,21 @@ public class TrappedRainwater {
                     } else {
                         water += (rightMax - height[right]);
                     }
-                    right--;
+                    right--; // move right every time it processes right
                 }
             }
+
         return water;
     }
 
+    public static void main(String[] args) {
+        System.out.println("Assignment 3: Trapped Rainwater");
 
+        int[] elevation = {1, 2, 1, 4, 1, 2, 1, 5, 0, 0, 2, 1, 5};
+        int trapped = trapRainwater(elevation);
+
+        System.out.println("Elevation map: " + Arrays.toString(elevation));
+        System.out.println("Trapped water: " + trapped + " units");
+    }
 }
+
